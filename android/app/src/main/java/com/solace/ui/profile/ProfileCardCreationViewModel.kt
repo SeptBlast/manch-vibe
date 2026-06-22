@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.solace.data.user.UserRepository
+import com.solace.ui.config.DefaultMoodPalette
 import com.solace.ui.config.MoodColorKey
 import com.solace.ui.config.UserProfile
 import com.solace.ui.onboarding.OnboardingAnswers

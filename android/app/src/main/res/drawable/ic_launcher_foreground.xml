@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Teal circle -->
+    <path
+        android:fillColor="#4ECDC4"
+        android:pathData="M54,20 a34,34 0 1,0 0.001,0 Z" />
+    <!-- White "S" letter -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,40 Q42,33 54,33 Q66,33 66,42 Q66,51 54,54 Q42,57 42,66 Q42,75 54,75 Q66,75 66,68"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:fillAlpha="0" />
+</vector>

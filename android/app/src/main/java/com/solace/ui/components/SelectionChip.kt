@@ -45,6 +45,7 @@ fun SelectionChip(
  * Wrapping flow layout of [SelectionChip]s from a flat list.
  * [maxSelections] = 0 means unlimited.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ChipGroup(
     options: List<String>,

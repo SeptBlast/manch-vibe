@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand tokens — kept minimal; Compose DesignTokens is the source of truth -->
+    <color name="solace_teal">#4ECDC4</color>
+    <color name="background_dark">#120B3C</color>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Minimal host theme — Compose owns all visual styling.
+        NoActionBar so no system action bar appears before Compose renders.
+    -->
+    <style name="Theme.Solace" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>
