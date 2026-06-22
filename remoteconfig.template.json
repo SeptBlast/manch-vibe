@@ -1,0 +1,15 @@
+{
+  "conditions": [],
+  "parameters": {
+    "ui_config_json": {
+      "defaultValue": {
+        "value": "{\"schemaVersion\":1,\"themeVariant\":\"DEFAULT\",\"experimentFlags\":{\"enableChat\":true,\"enableJournal\":true,\"enableLikes\":true,\"showMoodColorPicker\":true},\"loginScreen\":{\"visible\":true,\"tagline\":\"Discover yourself. We'll help guide you.\",\"providers\":[\"EMAIL\",\"GOOGLE\",\"APPLE\"],\"emailCtaLabel\":\"Continue with Email\",\"googleCtaLabel\":\"Continue with Google\",\"appleCtaLabel\":\"Continue with Apple\"},\"homeScreen\":{\"sections\":[{\"id\":\"profile_feed\",\"type\":\"PROFILE_FEED\",\"visible\":true,\"order\":0,\"title\":\"Discover\"},{\"id\":\"likes_grid\",\"type\":\"LIKES_GRID\",\"visible\":true,\"order\":1,\"title\":\"Likes you\"}],\"bottomNav\":[{\"id\":\"home\",\"label\":\"Home\",\"icon\":\"home\",\"visible\":true},{\"id\":\"journal\",\"label\":\"Journal\",\"icon\":\"book\",\"visible\":true},{\"id\":\"emotion\",\"label\":\"Emotion\",\"icon\":\"emoji\",\"visible\":true},{\"id\":\"likes\",\"label\":\"Likes\",\"icon\":\"heart\",\"visible\":true},{\"id\":\"chat\",\"label\":\"Chat\",\"icon\":\"chat\",\"visible\":true}]}}"
+      },
+      "description": "Full SolaceUiConfig JSON — controls login providers, home sections, bottom nav, theme, and experiment flags without a release.",
+      "valueType": "STRING"
+    }
+  },
+  "version": {
+    "versionNumber": "1"
+  }
+}

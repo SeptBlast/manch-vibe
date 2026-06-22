@@ -1,0 +1,56 @@
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+Thumbs.db
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# ── Android ───────────────────────────────────────────────────────────────────
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/*.keystore
+android/*.jks
+# Firebase — never commit these
+android/app/google-services.json
+
+# ── iOS ───────────────────────────────────────────────────────────────────────
+ios/.build/
+ios/build/
+ios/DerivedData/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+ios/*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+# Firebase — never commit this
+ios/Solace/GoogleService-Info.plist
+
+# ── Node / tooling ────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log
+yarn-error.log
+.env
+.env.local
+.env.*
+
+# ── Secrets / credentials ─────────────────────────────────────────────────────
+*.pem
+*.p12
+*.p8
+credentials.json
+service-account*.json
