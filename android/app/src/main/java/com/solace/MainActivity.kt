@@ -93,7 +93,10 @@ private fun RootNavigation(
 
         composable(Route.LOGIN) {
             LoginScreen(
-                config = homeState.uiConfig.loginScreen,
+                config        = homeState.uiConfig.loginScreen,
+                isLoading     = authState is AuthUiState.Loading,
+                errorMessage  = (authState as? AuthUiState.Error)?.message,
+                onClearError  = authVM::clearError,
                 onEmailLogin  = authVM::signInWithEmail,
                 onEmailSignUp = authVM::signUpWithEmail,
                 onGoogleLogin = { authVM.signInWithGoogle(activity) },
