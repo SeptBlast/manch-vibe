@@ -95,6 +95,7 @@ private fun RootNavigation(
             LoginScreen(
                 config = homeState.uiConfig.loginScreen,
                 onEmailLogin  = authVM::signInWithEmail,
+                onEmailSignUp = authVM::signUpWithEmail,
                 onGoogleLogin = { authVM.signInWithGoogle(activity) },
                 onAppleLogin  = { authVM.signInWithApple(activity) },
             )

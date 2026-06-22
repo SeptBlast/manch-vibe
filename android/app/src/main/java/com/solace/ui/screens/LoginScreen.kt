@@ -25,25 +25,31 @@ import com.solace.ui.config.AuthProvider
 import com.solace.ui.config.LoginScreenConfig
 import com.solace.ui.theme.*
 
-// TODO: connect to AuthViewModel; currently holds local UI state only
 @Composable
 fun LoginScreen(
     config: LoginScreenConfig = LoginScreenConfig(),
     onEmailLogin: (email: String, password: String) -> Unit = { _, _ -> },
+    onEmailSignUp: (email: String, password: String) -> Unit = { _, _ -> },
     onGoogleLogin: () -> Unit = {},
     onAppleLogin: () -> Unit = {},
-    onNavigateToSignUp: () -> Unit = {},
 ) {
     if (!config.visible) return
 
+    var isSignUp by remember { mutableStateOf(false) }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
+    var confirmPasswordVisible by remember { mutableStateOf(false) }
     val keyboardController = LocalSoftwareKeyboardController.current
 
     val showEmail = AuthProvider.EMAIL in config.providers
     val showGoogle = AuthProvider.GOOGLE in config.providers
     val showApple = AuthProvider.APPLE in config.providers
+
+    val passwordsMatch = !isSignUp || password == confirmPassword
+    val formValid = email.isNotBlank() && password.isNotBlank() &&
+        (!isSignUp || (confirmPassword.isNotBlank() && passwordsMatch))
 
     Box(
         modifier = Modifier
@@ -105,14 +111,12 @@ fun LoginScreen(
                     else PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Password,
-                        imeAction = ImeAction.Done,
+                        imeAction = if (isSignUp) ImeAction.Next else ImeAction.Done,
                     ),
                     keyboardActions = KeyboardActions(
                         onDone = {
                             keyboardController?.hide()
-                            if (email.isNotBlank() && password.isNotBlank()) {
-                                onEmailLogin(email, password)
-                            }
+                            if (!isSignUp && formValid) onEmailLogin(email, password)
                         },
                     ),
                     trailingIcon = {
@@ -129,22 +133,69 @@ fun LoginScreen(
                     modifier = Modifier.fillMaxWidth(),
                 )
 
+                // Confirm password — sign-up only
+                if (isSignUp) {
+                    Spacer(Modifier.height(SolaceSpacing.sm))
+
+                    OutlinedTextField(
+                        value = confirmPassword,
+                        onValueChange = { confirmPassword = it },
+                        label = { Text("Confirm password", color = TextOnDark.copy(alpha = 0.6f)) },
+                        singleLine = true,
+                        isError = confirmPassword.isNotBlank() && !passwordsMatch,
+                        supportingText = {
+                            if (confirmPassword.isNotBlank() && !passwordsMatch) {
+                                Text("Passwords don't match", color = Error)
+                            }
+                        },
+                        visualTransformation = if (confirmPasswordVisible) VisualTransformation.None
+                        else PasswordVisualTransformation(),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Password,
+                            imeAction = ImeAction.Done,
+                        ),
+                        keyboardActions = KeyboardActions(
+                            onDone = {
+                                keyboardController?.hide()
+                                if (formValid) onEmailSignUp(email, password)
+                            },
+                        ),
+                        trailingIcon = {
+                            TextButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
+                                Text(
+                                    if (confirmPasswordVisible) "Hide" else "Show",
+                                    color = SolaceTeal,
+                                    style = MaterialTheme.typography.labelSmall,
+                                )
+                            }
+                        },
+                        colors = loginTextFieldColors(),
+                        shape = MaterialTheme.shapes.medium,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
+
                 Spacer(Modifier.height(SolaceSpacing.md))
 
                 PrimaryButton(
-                    label = config.emailCtaLabel,
-                    enabled = email.isNotBlank() && password.isNotBlank(),
+                    label = if (isSignUp) "Create account" else config.emailCtaLabel,
+                    enabled = formValid,
                     onClick = {
                         keyboardController?.hide()
-                        onEmailLogin(email, password)
+                        if (isSignUp) onEmailSignUp(email, password)
+                        else onEmailLogin(email, password)
                     },
                 )
 
                 Spacer(Modifier.height(SolaceSpacing.sm))
 
-                TextButton(onClick = onNavigateToSignUp) {
+                TextButton(onClick = {
+                    isSignUp = !isSignUp
+                    confirmPassword = ""
+                }) {
                     Text(
-                        "Don't have an account? Sign up",
+                        if (isSignUp) "Already have an account? Sign in"
+                        else "Don't have an account? Sign up",
                         color = SolaceTeal,
                         style = MaterialTheme.typography.bodyMedium,
                     )
