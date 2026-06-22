@@ -1,0 +1,80 @@
+name: Vibeswipe
+options:
+  bundleIdPrefix: world.startupmanch
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "16"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+packages:
+  firebase-ios-sdk:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    from: "11.0.0"
+  GoogleSignIn-iOS:
+    url: https://github.com/google/GoogleSignIn-iOS.git
+    from: "7.1.0"
+
+targets:
+  Vibeswipe:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    bundleId: world.startupmanch.vibeswipe
+
+    sources:
+      - path: Solace
+        excludes:
+          - "**/.DS_Store"
+
+    resources:
+      - path: Solace/GoogleService-Info.plist
+
+    info:
+      path: Solace/Info.plist
+      properties:
+        CFBundleName: Vibeswipe
+        CFBundleDisplayName: Vibeswipe
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        UILaunchStoryboardName: LaunchScreen
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIApplicationSceneManifest:
+          UIApplicationIsSceneBasedLifecycle: true
+        CFBundleURLTypes:
+          - CFBundleURLSchemes:
+              - com.googleusercontent.apps.414230295497-vp0r007feu5feeag8b29g1n9k8if4haa
+        NSCameraUsageDescription: "Allow Vibeswipe to access your camera to set a profile photo."
+        NSPhotoLibraryUsageDescription: "Allow Vibeswipe to access your photos to set a profile photo."
+        ITSAppUsesNonExemptEncryption: false
+
+    dependencies:
+      - package: firebase-ios-sdk
+        product: FirebaseAuth
+      - package: firebase-ios-sdk
+        product: FirebaseFirestore
+      - package: firebase-ios-sdk
+        product: FirebaseStorage
+      - package: firebase-ios-sdk
+        product: FirebaseRemoteConfig
+      - package: firebase-ios-sdk
+        product: FirebaseAnalytics
+      - package: firebase-ios-sdk
+        product: FirebaseCrashlytics
+      - package: GoogleSignIn-iOS
+        product: GoogleSignIn
+      - package: GoogleSignIn-iOS
+        product: GoogleSignInSwift
+
+    settings:
+      base:
+        SWIFT_VERSION: "5.10"
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        ENABLE_BITCODE: false
+        DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+        SWIFT_OPTIMIZATION_LEVEL: "-Onone"
+      configs:
+        Debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG

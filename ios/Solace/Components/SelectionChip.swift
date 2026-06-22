@@ -100,10 +100,15 @@ public struct FlowLayout: Layout {
 // ---------------------------------------------------------------------------
 
 #Preview {
-    @Previewable @State var selected: Set<String> = ["Relationships"]
-    ChipGroup(
-        options: ["Relationships", "Work Stress", "Loss & grief", "Self worth", "Anxiety", "Peaceful & Grounded"],
-        selected: $selected
-    )
-    .padding()
+    struct Wrapper: View {
+        @State var selected: Set<String> = ["Relationships"]
+        var body: some View {
+            ChipGroup(
+                options: ["Relationships", "Work Stress", "Loss & grief", "Self worth", "Anxiety", "Peaceful & Grounded"],
+                selected: $selected
+            )
+            .padding()
+        }
+    }
+    return Wrapper()
 }

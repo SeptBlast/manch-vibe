@@ -29,7 +29,7 @@ public struct OnboardingView: View {
             }
         }
         .animation(.easeInOut(duration: 0.28), value: vm.currentIndex)
-        .onChange(of: vm.isComplete) { _, complete in
+        .onChange(of: vm.isComplete) { complete in
             if complete { onComplete(vm.answers) }
         }
         .alert("Something went wrong", isPresented: .constant(vm.error != nil)) {

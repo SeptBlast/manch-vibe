@@ -71,8 +71,8 @@ public struct OutlinedAuthButton: View {
 #Preview {
     VStack(spacing: 12) {
         PrimaryButton(label: "Continue with Email", action: {})
-        OutlinedAuthButton(label: "Continue with Google", leadingSystemImage: "globe", action: {})
-        OutlinedAuthButton(label: "Continue with Apple", leadingSystemImage: "applelogo", action: {})
+        OutlinedAuthButton(label: "Continue with Google", action: {}, leadingSystemImage: "globe")
+        OutlinedAuthButton(label: "Continue with Apple", action: {}, leadingSystemImage: "applelogo")
         PrimaryButton(label: "Disabled", action: {}, isEnabled: false)
     }
     .padding()

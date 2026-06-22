@@ -80,6 +80,12 @@ public struct HomeScreenConfig: Codable {
     public var sections: [HomeSectionConfig] = HomeSectionConfig.defaults
     public var bottomNav: [BottomNavTabConfig] = BottomNavTabConfig.defaults
 
+    public init(sections: [HomeSectionConfig] = HomeSectionConfig.defaults,
+                bottomNav: [BottomNavTabConfig] = BottomNavTabConfig.defaults) {
+        self.sections = sections
+        self.bottomNav = bottomNav
+    }
+
     public var visibleSections: [HomeSectionConfig] {
         sections.filter { $0.visible }.sorted { $0.order < $1.order }
     }
@@ -145,14 +151,14 @@ public struct UserProfile: Identifiable, Codable {
 // ---------------------------------------------------------------------------
 
 extension HomeSectionConfig {
-    static let defaults: [HomeSectionConfig] = [
+    public static let defaults: [HomeSectionConfig] = [
         .init(id: "profile_feed", type: .profileFeed, order: 0, title: "Discover"),
         .init(id: "likes_grid",   type: .likesGrid,   order: 1, title: "Likes you"),
     ]
 }
 
 extension BottomNavTabConfig {
-    static let defaults: [BottomNavTabConfig] = [
+    public static let defaults: [BottomNavTabConfig] = [
         .init(id: "home",    label: "Home",    icon: "house"),
         .init(id: "journal", label: "Journal", icon: "book"),
         .init(id: "emotion", label: "Emotion", icon: "face.smiling"),

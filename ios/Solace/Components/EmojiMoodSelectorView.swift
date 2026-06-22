@@ -46,7 +46,9 @@ public struct EmojiMoodSelectorView: View {
 // ---------------------------------------------------------------------------
 
 #Preview {
-    @Previewable @State var selected: String? = nil
-    EmojiMoodSelectorView(selected: $selected)
-        .padding()
+    struct Wrapper: View {
+        @State var selected: String? = nil
+        var body: some View { EmojiMoodSelectorView(selected: $selected).padding() }
+    }
+    return Wrapper()
 }

@@ -225,7 +225,7 @@ private struct ComposeEntrySheet: View {
             .background(Color.white)
             .onAppear { textFocused = true }
         }
-        .onChange(of: vm.showCompose) { _, show in
+        .onChange(of: vm.showCompose) { show in
             if !show { isPresented = false }
         }
         .presentationDetents([.medium, .large])

@@ -85,9 +85,9 @@ private struct LikerCard: View {
                         .padding(.vertical, 3)
                         .background(DesignTokens.Color.solaceTeal)
                         .clipShape(UnevenRoundedRectangle(
+                            topLeadingRadius: DesignTokens.Radius.card,
                             bottomLeadingRadius: 0,
                             bottomTrailingRadius: DesignTokens.Radius.card,
-                            topLeadingRadius: DesignTokens.Radius.card,
                             topTrailingRadius: 0
                         ))
                 }

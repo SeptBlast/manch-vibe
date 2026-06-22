@@ -36,7 +36,7 @@ struct ProfileCardCreationView: View {
                 )
             }
         }
-        .onChange(of: vm.isSaved) { _, saved in if saved { onComplete() } }
+        .onChange(of: vm.isSaved) { saved in if saved { onComplete() } }
         .alert("Something went wrong", isPresented: .constant(vm.error != nil)) {
             Button("OK") { vm.error = nil }
         } message: {
@@ -208,11 +208,11 @@ private struct CardPreviewStepView: View {
         uid: "preview",
         answers: OnboardingAnswers(
             username: "CalmWaves27",
-            feelingSentence: "There's a part of me that wants to stay in bed all day.",
             moodColor: .calmRelaxed,
-            vibes: ["Relationships", "Growth"],
             soughtSupport: "Yes, I'm in therapy",
-            openness: "I'd like to connect with a few like-minded people"
+            openness: "I'd like to connect with a few like-minded people",
+            vibes: ["Relationships", "Growth"],
+            feelingSentence: "There's a part of me that wants to stay in bed all day."
         )
     )
     .solaceTheme()

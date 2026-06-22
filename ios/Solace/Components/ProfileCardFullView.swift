@@ -212,7 +212,7 @@ private struct AvatarSectionView: View {
             AsyncImage(url: parsed) { image in
                 image.resizable().scaledToFill()
             } placeholder: {
-                Color(DesignTokens.Color.chipUnselectedBg)
+                DesignTokens.Color.chipUnselectedBg
             }
             .frame(maxWidth: .infinity)
             .frame(height: DesignTokens.Size.profileImageHeight)

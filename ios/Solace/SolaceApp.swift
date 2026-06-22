@@ -48,7 +48,7 @@ struct RootView: View {
                     config: homeVM.uiConfig.loginScreen,
                     onEmailLogin: authVM.signInWithEmail,
                     onGoogleLogin: { Task { await authVM.signInWithGoogle() } },
-                    onAppleLogin:  authVM.handleAppleAuth
+                    onAppleLogin:  { auth in Task { try? await authVM.handleAppleAuth(.success(auth)) } }
                 )
 
             case .loading:
@@ -91,7 +91,7 @@ struct RootView: View {
         }
         .solaceTheme(homeVM.uiConfig.themeVariant)
         .task { await homeVM.loadConfig() }
-        .onChange(of: authVM.state) { _, newState in
+        .onChange(of: authVM.state) { newState in
             if case .authenticated = newState, let uid = authVM.currentUserId {
                 Task { await checkOnboardingStatus(uid: uid) }
             }

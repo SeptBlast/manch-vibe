@@ -22,7 +22,7 @@ struct FlipCardView<Front: View, Back: View>: View {
         .rotation3DEffect(.degrees(rotation), axis: (x: 0, y: 1, z: 0), perspective: 0.5)
         .animation(.spring(response: 0.45, dampingFraction: 0.8), value: rotation)
         .onTapGesture { flip() }
-        .onChange(of: face) { _, newFace in
+        .onChange(of: face) { newFace in
             withAnimation(.spring(response: 0.45, dampingFraction: 0.8)) {
                 rotation = newFace == .front ? 0 : 180
             }
